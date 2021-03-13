@@ -1,8 +1,5 @@
 FROM gcr.io/distroless/java:11
 
-ENV IP="127.0.0.1"
-
-
 # Main server port
 EXPOSE 9000
 # Images server port
@@ -17,4 +14,5 @@ VOLUME  ["/data"]
 
 USER nonroot:nonroot
 
-CMD [ "/datacrow/datacrow-server.jar", "-ip:${IP}", "-userdir:/data", "-port:9000", "-imageserverport:9001", "-webserverport:8080" ]
+ENTRYPOINT [ "/usr/bin/java",  "-Xmx1024m", "-jar" ]
+CMD [ "/datacrow/datacrow-server.jar", "-ip:127.0.0.1", "-userdir:/data", "-port:9000", "-imageserverport:9001", "-webserverport:8080" ]

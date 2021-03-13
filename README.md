@@ -9,17 +9,16 @@ This should result in a `dc-server`  directory.
 
 Finally build with `docker  build  . -t  datacrow`.
 
+### Increasing available memory
+
+In  order to increase (or  decrease) the  memory available to Datacrow, edit `-Xmx1024m` in the  `ENTRYPOINT` line in `Dockerfile` and set your  desired amount of memory.
+
 ## Usage
 
 ### Data
 
 This container provides a `data` volume for storing data from Datacrow.
 This can be mounted to the filesystem or to another volume.
-
-## Environmental Variables
-
-Datacrow needs to know what IP address to bind to.
-This is set by the enivorenmental variable `IP` and defaults to `127.0.0.1`.
 
 ## Ports
 
@@ -32,7 +31,7 @@ Datacrow requires  three ports:
 ### Example
 
 ```bash
-docker run -e IP=10.0.0.10 -v /datacrow/data:/data -p 9000:9000 -p 9001:9001 -p 8080:8080  datacrow
+docker run -v /datacrow/data:/data -p 9000:9000 -p 9001:9001 -p 8080:8080  datacrow
 ```
 
 ### Login
