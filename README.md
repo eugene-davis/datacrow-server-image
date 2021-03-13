@@ -9,6 +9,14 @@ This should result in a `dc-server`  directory.
 
 Finally build with `docker  build  . -t  datacrow`.
 
+## ARM Build
+
+Since distroless does not have an ARM build available for the Java image at present, there is an alternative Dockerfile based on the [openjdk](https://hub.docker.com/_/openjdk) image.
+
+```bash
+docker build . -f Dockerfile.arm -t datacrow
+```
+
 ### Increasing available memory
 
 In  order to increase (or  decrease) the  memory available to Datacrow, edit `-Xmx1024m` in the  `ENTRYPOINT` line in `Dockerfile` and set your  desired amount of memory.

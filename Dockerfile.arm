@@ -1,0 +1,20 @@
+FROM openjdk:11.0.10-jre-slim
+
+# Main server port
+EXPOSE 9000
+# Images server port
+EXPOSE 9001
+# Web server port
+EXPOSE 8080
+
+RUN groupadd --gid 65532 --system nonroot && useradd --uid 65532 --gid nonroot --no-create-home --system nonroot
+RUN apt-get update &&  apt-get install --no-install-recommends -y libfreetype6=2.9.1-3+deb10u2 libfontconfig1=2.13.1-2 && apt-get clean && rm -rf /var/lib/apt/lists/*
+COPY --chown=nonroot:nonroot dc-server /datacrow
+
+WORKDIR /datacrow
+VOLUME  ["/data"]
+
+USER nonroot:nonroot
+
+ENTRYPOINT [ "java",  "-Xmx1024m", "-jar" ]
+CMD [ "/datacrow/datacrow-server.jar", "-ip:127.0.0.1", "-userdir:/data", "-port:9000", "-imageserverport:9001", "-webserverport:8080" ]
