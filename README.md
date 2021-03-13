@@ -9,8 +9,33 @@ This should result in a `dc-server`  directory.
 
 Finally build with `docker  build  . -t  datacrow`.
 
-## Execution
+## Usage
+
+### Data
+
+This container provides a `data` volume for storing data from Datacrow.
+This can be mounted to the filesystem or to another volume.
+
+## Environmental Variables
+
+Datacrow needs to know what IP address to bind to.
+This is set by the enivorenmental variable `IP` and defaults to `127.0.0.1`.
+
+## Ports
+
+Datacrow requires  three ports:
+
+* main server port - 9000
+* image server port - 9001
+* web server port - 8080
+
+### Example
 
 ```bash
-docker run -v /datacrow/data:/data -p 9000:9000 -p 9001:9001 -p 8080:8080  datacrow
+docker run -e IP=10.0.0.10 -v /datacrow/data:/data -p 9000:9000 -p 9001:9001 -p 8080:8080  datacrow
 ```
+
+### Login
+
+The container sets the default admin user `SA`.
+After  deploying, you should set a new password.
