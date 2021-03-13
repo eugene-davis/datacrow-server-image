@@ -3,7 +3,7 @@ FROM gcr.io/distroless/java:11
 ENV IP="127.0.0.1"
 
 
-# Main  server port
+# Main server port
 EXPOSE 9000
 # Images server port
 EXPOSE 9001
