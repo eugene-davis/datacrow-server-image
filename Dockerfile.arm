@@ -1,4 +1,4 @@
-FROM adoptopenjdk:hotspot
+FROM docker.io/library/adoptopenjdk:11-jre-hotspot
 
 # Main server port
 EXPOSE 9000
